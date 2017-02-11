@@ -1,0 +1,31 @@
+title = "Worn-out Shoes"
+baseurl = "https://greenonion.github.io/"
+builddrafts = true
+author = "Nikos Fertakis"
+contentdir = "content"
+layoutdir = "layouts"
+publishdir = "public"
+canonifyurls = true
+languageCode = "en-us"
+theme = "cocoa-eh"
+disqusshortname = ""
+pluralizelisttitles = false
+
+pygmentsstyle = "emacs"
+pygmentsuseclasses = false
+pygmentscodefences  = true
+
+[permalinks]
+blog = "blog/:slug/"
+
+[params]
+dateform = "2 Jan, 2006"
+dateformfull = "Mon Jan 2 2006 15:04:05 MST"
+description = "Thoughts"
+highlightjs = true
+progressively = true
+lang = "en"
+github = "greenonion"
+email = "nikos.fertakis@gmail.com"
+linkedin = "nfertakis"
+twitter = "@nikosfertakis"
