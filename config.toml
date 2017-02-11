@@ -8,7 +8,7 @@ publishdir = "public"
 canonifyurls = true
 languageCode = "en-us"
 theme = "cocoa-eh"
-disqusshortname = ""
+disqusshortname = "greenonion-github-com"
 pluralizelisttitles = false
 
 pygmentsstyle = "emacs"
