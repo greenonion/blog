@@ -10,7 +10,7 @@ draft=false
 I have been studying [Structure and Interpretation of Computer Programs](https://mitpress.mit.edu/sicp/) for
 about one and an half months now. As everyone familiar with the book will know,
 at least half of the work (and the knowledge!) is in its several exercises. I
-started documenting my process, writing down all solutions, but wasn't sure
+started documenting my progress, writing down all solutions, but wasn't sure
 whether I wanted to post them here. At first I wasn't even sure I'd actually go
 through with the book, but as I'm reaching section 2.2.4 I am amazed by it and
 not intending to stop soon. Still, this doesn't mean I'll make it to the end,
@@ -18,7 +18,7 @@ and I'm not stressing about how long it will take. I'm here for the long haul.
 It also goes without saying that you shouldn't believe everyhting you read: some
 of these solutions might be incomplete or just plain wrong.
 
-On a slightly practical note: I have been using [Racket](https://racket-lang.org) with it's [SICP
+On a slightly practical note: I have been using [Racket](https://racket-lang.org) with its [SICP
 collection](compatibility layer) for the exercises. I considered using [Clojure](https://clojure.org) (which I'm
 already familiar with) but decided against it, mainly because I wanted to follow
 the text as closely as I could. Scheme is a very syntactically simple language
