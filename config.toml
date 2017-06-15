@@ -11,9 +11,9 @@ theme = "cocoa-eh"
 disqusshortname = "greenonion-github-com"
 pluralizelisttitles = false
 
-pygmentsstyle = "emacs"
-pygmentsuseclasses = false
-pygmentscodefences  = true
+# pygmentsstyle = "emacs"
+# pygmentsuseclasses = false
+# pygmentscodefences  = true
 
 [permalinks]
 blog = "blog/:slug/"

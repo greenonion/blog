@@ -1,0 +1,46 @@
+{{ if .Site.Params.highlightjs }}
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+{{ range .Site.Params.highlightjslanguages }}
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/{{.}}.min.js"></script>
+{{ end }}
+
+<script type="text/javascript">
+ hljs.initHighlightingOnLoad();
+</script>
+{{ end }}
+
+{{ if .Site.Params.progressively }}
+<script src="{{ .Site.BaseURL }}js/progressively.min.js"></script>
+<script>
+ progressively.init({delay: 30, throttle: 50});
+</script>
+{{ end }}
+
+<!-- Klipse -->
+
+<link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css">
+
+<script>
+ window.klipse_settings = {
+   //selector_eval_js: '.language-klipse-eval-js',
+   selector_eval_scheme: '.language-klipse-eval-scheme', // css selector for the html elements you want to klipsify
+ };
+</script>
+<script src="https://storage.googleapis.com/app.klipse.tech/plugin_prod/js/klipse_plugin.min.js"></script>
+
+<style>
+ /**************** KLIPSE-SPECIFIC RULES ***********************/
+
+ /* Modify the Code editor's borders */
+ .CodeMirror {
+   padding: 0px;
+   background: none !important;
+   border: none !important;
+   border-bottom: solid 1px #90B4FE !important;
+ }
+
+ pre.CodeMirror-line {
+   padding: 0px !important;
+   margin: 0px !important;
+ }
+</style>
