@@ -10,6 +10,7 @@ languageCode = "en-us"
 theme = "cocoa-eh"
 disqusshortname = "greenonion-github-com"
 pluralizelisttitles = false
+buildDrafts = false
 
 [permalinks]
 blog = "blog/:slug/"
