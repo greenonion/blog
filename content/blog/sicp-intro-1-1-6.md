@@ -16,7 +16,9 @@ through with the book, but as I'm reaching section 2.2.4 I am amazed by it and
 not intending to stop soon. Still, this doesn't mean I'll make it to the end,
 and I'm not stressing about how long it will take. I'm here for the long haul.
 It also goes without saying that you shouldn't believe everyhting you read: some
-of these solutions might be incomplete or just plain wrong.
+of these solutions might be incomplete or just plain wrong. Also usually I
+compare my notes to [Eli Bendersky's](http://eli.thegreenplace.net/tag/sicp), he has done an amazing job documenting
+his progress and certainly inspired me.
 
 On a slightly practical note: I have been using [Racket](https://racket-lang.org) with its [SICP
 collection](compatibility layer) for the exercises. I considered using [Clojure](https://clojure.org) (which I'm
