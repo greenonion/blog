@@ -2,7 +2,6 @@
 title = "SICP Solutions: Sections 1.2.3 and 1.2.4"
 date = "2017-06-16T17:23:35+03:00"
 tags = ["sicp"]
-meta_img = "/images/image.jpg"
 +++
 
 ### Section 1.2.3 - Orders of Growth
