@@ -11,10 +11,6 @@ theme = "cocoa-eh"
 disqusshortname = "greenonion-github-com"
 pluralizelisttitles = false
 
-# pygmentsstyle = "emacs"
-# pygmentsuseclasses = false
-# pygmentscodefences  = true
-
 [permalinks]
 blog = "blog/:slug/"
 
@@ -22,10 +18,14 @@ blog = "blog/:slug/"
 dateform = "2 Jan, 2006"
 dateformfull = "Mon Jan 2 2006 15:04:05 MST"
 description = "Thoughts"
+copyright = "Copyright © 2017 Nikos Fertakis"
 highlightjs = true
 progressively = true
+latestpostcount = 5
 lang = "en"
 github = "greenonion"
 email = "nikos.fertakis@gmail.com"
 linkedin = "nfertakis"
 twitter = "@nikosfertakis"
+posts_navigation = true
+

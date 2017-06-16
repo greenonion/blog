@@ -1,20 +1,36 @@
-{{ if .Site.Params.highlightjs }}
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
-{{ range .Site.Params.highlightjslanguages }}
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/{{.}}.min.js"></script>
-{{ end }}
-
-<script type="text/javascript">
- hljs.initHighlightingOnLoad();
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+ WebFont.load({
+   google: {
+     families: ['Raleway:400,600,700', 'Merriweather:300,300i,700,700i', 'Ubuntu+Mono:400,700']
+   }
+ });
 </script>
+
+{{ if .Site.Params.highlightjs }}
+<script src="{{ .Site.BaseURL }}js/highlight.min.js" defer></script>
+{{ range .Site.Params.highlightjslanguages }}
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/{{.}}.min.js" defer></script>
+{{ end }}
 {{ end }}
 
 {{ if .Site.Params.progressively }}
-<script src="{{ .Site.BaseURL }}js/progressively.min.js"></script>
-<script>
- progressively.init({delay: 30, throttle: 50});
-</script>
+<script src="{{ .Site.BaseURL }}js/progressively.min.js" defer></script>
 {{ end }}
+
+{{ template "_internal/google_analytics_async.html" . }}
+
+<script>
+ window.onload = function() {
+   {{ if .Site.Params.highlightjs }}
+   hljs.initHighlighting();
+   {{ end }}
+   {{ if .Site.Params.progressively }}
+   progressively.init({delay: 30, throttle: 50});
+   {{ end }}
+ };
+</script>
+
 
 <!-- Klipse -->
 
@@ -22,8 +38,20 @@
 
 <script>
  window.klipse_settings = {
-   //selector_eval_js: '.language-klipse-eval-js',
-   selector_eval_scheme: '.language-klipse-eval-scheme', // css selector for the html elements you want to klipsify
+   selector_eval_scheme: '.language-klipse-eval-scheme',
+   codemirror_options_in: {
+     indentUnit: 2,
+     lineWrapping: false,
+     // lineNumbers: false,
+     autoCloseBrackets: true,
+     scrollbarStyle: null,
+
+   },
+   codemirror_options_out: {
+     lineWrapping: true,
+     // lineNumbers: false,
+     scrollbarStyle: null
+   }
  };
 </script>
 <script src="https://storage.googleapis.com/app.klipse.tech/plugin_prod/js/klipse_plugin.min.js"></script>

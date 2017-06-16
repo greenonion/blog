@@ -3,7 +3,7 @@
 
   {{ partial "head.html" . }}
 
-  <body lang="{{ .Site.Params.lang }}">
+  <body>
 
     {{ if .IsPage }}
     <section class="header">
@@ -22,7 +22,7 @@
                 {{ range .Site.Sections }}
                 {{ range first 1 (where .Pages "Section" "ne" "")}}
                 {{ if ne .Section "blog"}}
-                <a href="{{ .Section | urlize }}"><li>{{ .Section }}</li></a>
+                <a href="{{ .Section | urlize | absURL }}"><li>{{ .Section }}</li></a>
                 {{ end }}
                 {{ end }}
                 {{ end }}
@@ -34,43 +34,6 @@
                 <a href="https://pinboard.in/u:greenonion"><li>Pinboard</li></a>
               </ul>
             </nav>
-          </div>
-        </div>
-      </section>
-
-      <section class="icons">
-        <div class="container">
-          <div class="content">
-
-            {{ if .Site.Params.github }}
-            <a href="https://github.com/{{ .Site.Params.github }}" target="_blank">
-              <i class="icon ion-social-github"></i>
-            </a>
-            {{ end }}
-
-            {{ if .Site.Params.twitter }}
-            <a href="https://twitter.com/{{ .Site.Params.twitter }}" target="_blank">
-              <i class="icon ion-social-twitter"></i>
-            </a>
-            {{ end }}
-
-            {{ if .Site.Params.linkedin }}
-            <a href="https://www.linkedin.com/in/{{ .Site.Params.linkedin }}" target="_blank">
-              <i class="icon ion-social-linkedin"></i>
-            </a>
-            {{ end }}
-
-            {{ if .Site.Params.email }}
-            <a href="mailto:{{ .Site.Params.email }}">
-              <i class="icon ion-ios-email larger"></i>
-            </a>
-            {{ end }}
-
-            {{ if .Site.RSSLink }}
-            <a href="{{ .Site.RSSLink }}">
-              <i class="icon ion-social-rss larger"></i>
-            </a>
-            {{ end }}
           </div>
         </div>
       </section>
