@@ -1,0 +1,178 @@
++++
+title = "SICP Solutions: Sections 1.2.3 and 1.2.4"
+date = "2017-06-16T17:23:35+03:00"
+tags = ["sicp"]
+meta_img = "/images/image.jpg"
++++
+
+### Section 1.2.3 - Orders of Growth
+
+#### Exercise 1.14
+
+The tree is big :)
+
+The recursive process reaches maximum depth when the denomination is a penny,
+for example `(cc 11 1)` will be $11$. This means that the growth of space will
+be $\Theta(n)$, where $n$ is the amount we want to change.
+
+For each denomination sub-tree, the maximum steps we will need to calculate is
+where the only remaining denomination is the penny, and the steps required will
+be exactly $n$. Since we have $5$ denominations, the time complexity will be
+$O(n^5)$.
+
+#### Exercise 1.15
+
+##### a.
+
+The procedure `p` will be applied each time `angle` is greater than $0.1$.
+Between iterations, `angle` will be divided by $3$. This means that with a
+starting `angle` of $12.15$ we will have `p` applied for $12.15, 4.16, 1.38,
+0.46$ and finally for $0.15$. So `p` will be applied $5$ times.
+
+##### b.
+
+The space required will be growing on the order of $O(\log_3(n))$, because each
+step will require to remember its parent to return to. Similarly, the time
+required will be $O(\log_3(n))$ as well.
+
+### Section 1.2.4 - Exponentiation
+
+#### Exercise 1.16
+
+Using the definition of `even?` from before:
+
+```klipse-eval-scheme
+(define (fast-expr b n)
+  (fast-expr-iter b n 1))
+
+(define (fast-expr-iter b n a)
+  (cond ((= n 1) a)
+        ((even? n) (fast-expr-iter b
+                                   (/ n 2)
+                                   (* a (* b b))))
+        (else (fast-expr-iter b (- n 1) (* a b)))))
+
+(fast-expr 2 3)
+```
+
+#### Exercise 1.17
+
+A recursive process:
+
+```klipse-eval-scheme
+(define (double a) (* 2 a))
+
+(define (halve a) (/ a 2))
+
+(define (fast-multi a b)
+  (cond ((= a 1) b)
+        ((even? a) (fast-multi (halve a) (double b)))
+        (else (+ b (fast-multi (- a 1) b)))))
+
+(fast-multi 5 8)
+```
+
+#### Exercise 1.18
+
+Similarly to exercise 1.16, we will use a variable as accumulator:
+
+```klipse-eval-scheme
+(define (double a) (* 2 a))
+
+(define (halve a) (/ a 2))
+
+(define (fast-mult a b)
+  (fast-mult-iter a b 0))
+
+(define (fast-mult-iter a b n)
+  (cond ((= a 0) n)
+        ((even? a) (fast-mult-iter (halve a) (double b) n))
+        (else (fast-mult-iter (- a 1) b (+ b n)))))
+
+(fast-multi 5 8)
+```
+
+#### Exercise 1.19
+
+First, we need to apply $T$ twice, to compute $T^2$. We start with:
+
+<div>$$
+
+\begin{align*}
+  a &\leftarrow bq + aq + ap\\
+  b &\leftarrow bp + aq
+\end{align*}
+
+$$</div>
+
+Which will then become:
+
+<div>$$
+
+\begin{align*}
+  a &\leftarrow (bp + aq)q + (bp + aq + ap)q + (bq + aq + ap)p\\
+  b &\leftarrow (bp + aq)p + (bp + aq + ap)q
+\end{align*}
+
+$$</div>
+
+Let's expand the first one:
+
+<div>$$
+
+\begin{align*}
+  a &\leftarrow (bp + aq)q + (bp + aq + ap)q + (bq + aq + ap)p\\
+    &= bpq + aq^2 + bq^2 + aq^2 + apq + bpq + apq + ap^2 \\
+    &= b(2pq + q^2) + a(2pq + q^2) + a(q^2 + p^2)
+\end{align*}
+
+$$</div>
+
+And in the same manner the second one:
+
+<div>$$
+
+\begin{align*}
+  b &\leftarrow (bp + aq)p + (bp + aq + ap)q\\
+    &= bp^2 + apq + bq^2 + aq^2 + apq\\
+    &= b(p^2 + q^2) + a(2pq + q^2)
+\end{align*}
+
+$$</div>
+
+So it turns out that we can name variables $p'$ and $q'$:
+
+<div>$$
+
+\begin{align*}
+  p' &= p^2 + q^2\\
+  q' &= 2pq + q^2
+\end{align*}
+
+$$</div>
+
+These values will essentially square $T$. So the logarithimic version of the
+Fibonacci procedure can be written as:
+
+```klipse-eval-scheme
+(define (square n) (* n n))
+
+(define (fib n)
+  (fib-iter 1 0 0 1 n))
+
+(define (fib-iter a b p q count)
+  (cond ((= count 0) b)
+        ((even? count)
+         (fib-iter a
+                   b
+                   (+ (square p) (square q))
+                   (+ (* 2 p q) (square q))
+                   (/ count 2)))
+        (else (fib-iter (+ (* b q) (* a q) (* a p))
+                        (+ (* b p) (* a q))
+                        p
+                        q
+                        (- count 1)))))
+
+(fib 9)
+```
