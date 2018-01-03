@@ -75,7 +75,7 @@ And running it we can see that it converges faster than the previous solution:
 
 And we can write the iterative version:
 
-```scheme
+p```scheme
 (define (product term a next b)
   (define (iter a result)
     (if (> a b)
