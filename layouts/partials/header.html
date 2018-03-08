@@ -5,30 +5,32 @@
 
   <body>
 
-    {{ if .IsPage }}
-    <section class="header">
+    {{ if or (.Site.Params.small_banner_logo) (.IsPage) }}
+    <div class="header column">
       {{ else }}
-      <section class="header header-home">
+      <div class="header header-home column">
         {{ end }}
         <div class="container">
-          <a href="{{ .Site.BaseURL }}"></a>
+          {{ if ne .Site.Params.logofile "" }}
+          <a href="{{ .Site.BaseURL }}"><img class="logo" src="{{ .Site.Params.logofile | absURL }}" alt="logo" /></a>
+          {{ end }}
           <div class="content">
             <a href="{{ .Site.BaseURL }}"><div class="name"><h1>{{ .Site.Title }}</h1></div></a>
             <nav>
               <ul>
                 {{ if ne (len (where .Site.RegularPages "Section" "blog")) 0 }}
-                <a href="{{ .Site.BaseURL }}blog/"><li>Blog</li></a>
+                <li><a href="{{ .Site.BaseURL }}blog/">Blog</a></li>
                 {{ end }}
-                {{ range .Site.Sections }}
+                {{ range $.Site.Home.Sections }}
                 {{ range first 1 (where .Pages "Section" "ne" "")}}
                 {{ if ne .Section "blog"}}
-                <a href="{{ .Section | urlize | absURL }}"><li>{{ .Section }}</li></a>
+                <li><a href="{{ .Section | urlize | absURL }}">{{ .Section }}</a></li>
                 {{ end }}
                 {{ end }}
                 {{ end }}
                 {{ range where .Site.RegularPages "Section" ""}}
-                {{ if ne .Title "Home"}}
-                <a href="{{ .Permalink }}"><li>{{ .Title }}</li></a>
+                {{ if and (ne .Title "License") (ne .Title "Home")}}
+                <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
                 {{ end }}
                 {{ end }}
                 <a href="https://pinboard.in/u:greenonion"><li>Pinboard</li></a>
@@ -36,4 +38,4 @@
             </nav>
           </div>
         </div>
-      </section>
+      </div>

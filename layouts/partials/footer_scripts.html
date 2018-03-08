@@ -1,3 +1,4 @@
+{{ if not .Site.Params.disablefancyfonts }}
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 <script>
  WebFont.load({
@@ -6,6 +7,7 @@
    }
  });
 </script>
+{{ end }}
 
 {{ if .Site.Params.highlightjs }}
 <script src="{{ .Site.BaseURL }}js/highlight.min.js" defer></script>
@@ -18,6 +20,20 @@
 <script src="{{ .Site.BaseURL }}js/progressively.min.js" defer></script>
 {{ end }}
 
+
+{{ if .Site.Params.issoHost }}
+<script
+  data-isso="//{{ .Site.Params.issoHost }}/"
+  data-isso-css="true"
+  data-isso-lang="{{ .Site.LanguageCode }}"
+  src="//{{ .Site.Params.issoHost }}/js/embed.min.js"
+></script>
+{{ end }}
+
+{{ if .Site.Params.share }}
+<script src="{{ .Site.BaseURL }}js/social-share-kit.min.js" defer></script>
+{{ end }}
+
 {{ template "_internal/google_analytics_async.html" . }}
 
 <script>
@@ -28,9 +44,23 @@
    {{ if .Site.Params.progressively }}
    progressively.init({delay: 30, throttle: 50});
    {{ end }}
+   {{ if .Site.Params.share }}
+   SocialShareKit.init({
+     twitter: {
+       text: '',
+       {{ if .Site.Params.twitter }}via: '{{ .Site.Params.twitter }}'{{ end }}
+     }
+   });
+   {{ end }}
  };
 </script>
 
+{{ if .Site.Params.uselatex }}
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+</script>
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML"></script>
+{{ end }}
 
 <!-- Klipse -->
 
@@ -44,8 +74,7 @@
      lineWrapping: false,
      // lineNumbers: false,
      autoCloseBrackets: true,
-     scrollbarStyle: null,
-
+     scrollbarStyle: null
    },
    codemirror_options_out: {
      lineWrapping: true,
@@ -54,7 +83,6 @@
    }
  };
 </script>
-<script src="https://storage.googleapis.com/app.klipse.tech/plugin_prod/js/klipse_plugin.min.js"></script>
 
 <style>
  /**************** KLIPSE-SPECIFIC RULES ***********************/
@@ -72,34 +100,4 @@
    margin: 0px !important;
  }
 </style>
-
-<!-- MathJax -->
-
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-<script type="text/x-mathjax-config">
- MathJax.Hub.Config({
-   tex2jax: {
-     inlineMath: [['$','$'], ['\\(','\\)']],
-     displayMath: [['$$','$$'], ['\[','\]']],
-     processEscapes: true,
-     processEnvironments: true,
-     skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-     TeX: { equationNumbers: { autoNumber: "AMS" },
-            extensions: ["AMSmath.js", "AMSsymbols.js"] }
-   }
- });
-</script>
-
-
-<style>
- code.has-jax {
-   font: inherit;
-   font-size: 100%;
-   background: inherit;
-   border: inherit;
-   color: #515151;
- }
-</style>
+<script src="https://storage.googleapis.com/app.klipse.tech/plugin_prod/js/klipse_plugin.min.js"></script>
