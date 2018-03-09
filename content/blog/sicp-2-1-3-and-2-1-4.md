@@ -2,7 +2,7 @@
 title: "SICP Solutions: Sections 2.1.3 and 2.1.4"
 date: 2018-03-08T21:24:38+02:00
 tags: ["sicp"]
-draft: true
+draft: false
 ---
 
 ### Section 2.1.3 - What Is Meant by Data?

@@ -2,7 +2,7 @@
 title: "SICP Solutions: Sections 2.1.1 and 2.1.2"
 date: 2018-03-08T20:34:39+02:00
 tags: ["sicp"]
-draft: true
+draft: false
 ---
 
 # Chapter 2
