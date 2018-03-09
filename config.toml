@@ -1,6 +1,6 @@
 title = "Worn-out Shoes"
 baseurl = "https://greenonion.github.io/"
-builddrafts = true
+builddrafts = false
 author = "Nikos Fertakis"
 contentdir = "content"
 layoutdir = "layouts"
